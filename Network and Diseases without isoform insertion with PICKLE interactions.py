@@ -14,8 +14,8 @@ start_time = time.time();
 # Adding (replacing) interactions column of the Pickle database.
 # Writing Human proteome data with Pickle interactions.
 
-pickle_ints = pd.read_csv('UniProtNormalizedTabular-default.txt', delimiter='\t', usecols=['InteractorA', 'InteractorB'])
-Human_proteome = pd.read_csv('uniprot-proteome%3AUP000005640.tab', delimiter='\t')
+pickle_ints = pd.read_csv('Pickle_input', delimiter='\t', usecols=['InteractorA', 'InteractorB'])
+Human_proteome = pd.read_csv('uniprot_input', delimiter='\t')
 
 grp1 = pickle_ints.groupby('InteractorA')['InteractorB'].apply(list).apply(lambda x : '; '.join(str(elem) for elem in x)).reset_index(name='Interacts with').rename(columns={'InteractorA':'Entry'})
 grp2 = pickle_ints.groupby('InteractorB')['InteractorA'].apply(list).apply(lambda x : '; '.join(str(elem) for elem in x)).reset_index(name='Interacts with').rename(columns={'InteractorB':'Entry'})
@@ -138,9 +138,9 @@ Total_net = len_net * pit_net
 Total_y_concat = pit_y_concat * (len_net - len_ent)
 B = pit_net * len_net - y_summation
 
-Age = pd.read_csv('main_HUMAN.csv', usecols=['Entry', 'modeAge'])
+Age = pd.read_csv('age_input.csv', usecols=['Entry', 'modeAge'])
 
-orphadata_unprocessed = pd.read_csv('en_product9_prev.csv', encoding = "ISO-8859-1",
+orphadata_unprocessed = pd.read_csv('orpha_input.csv', encoding = "ISO-8859-1",
                                     usecols=['OrphaNumber', 'ExpertLink', 'Name', 'Name6', 'Source', 'Name12', 'Name20', 'Name24',
                                              'Name28']).rename(columns={'OrphaNumber': 'OrphaNumber (source: Orphanet)',
                                                                         'Name': 'Disease name (source: Orphanet)', 'Name6': 'Disease type',
