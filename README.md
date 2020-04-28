@@ -19,7 +19,7 @@ Python codes: [https://github.com/synaptic-neurolab/****](https://github.com/syn
 
 Estimation of mutual information for a protein (EMIP) is calculated using the following function:
 
-<img src="img/mutual_inf.PNG" height="30"> 
+<img src="img/mutual_inf.PNG" height="150"> 
 
 ## Usage
 
